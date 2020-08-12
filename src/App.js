@@ -64,6 +64,7 @@ const addContact = (event) => {
         setTimeout(() => {
           setAddedNotification(null)
         }, 3000)
+        
       })
   }
 }

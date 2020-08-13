@@ -51,6 +51,13 @@ const addContact = (event) => {
       "name": newName,
       "number": newNumber
     }
+    if (!(newPerson.name) || !(newPerson.number)) {
+      setErrorMessage('Name or Number missing')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 3000)
+      return console.log(errorMessage)
+    }
 
     personsServices
       .create(newPerson)
@@ -64,7 +71,13 @@ const addContact = (event) => {
         setTimeout(() => {
           setAddedNotification(null)
         }, 3000)
-        
+      })
+      .catch(error => {
+      
+        setErrorMessage(error.response.data)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
       })
   }
 }
